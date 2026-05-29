@@ -1,25 +1,30 @@
-'use client';
+'use client'
 
-import { useGetThemeSettingsByCurrentTheme } from '@/components/widgets/theme-toggle/hooks/use-get-theme-settings-by-current-theme';
-import { useGetUser } from '@/hooks/actions/user/use-get-user';
-import { Avatar, Button, Popover, Separator, Spinner, toast } from '@heroui/react';
-import clsx from 'clsx';
-import { signOut, useSession } from 'next-auth/react';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import { IoLogOut, IoMoon, IoSunny } from 'react-icons/io5';
-import { LuSettings } from 'react-icons/lu';
-import styles from './sidebar-user-menu.module.css';
+import { useGetThemeSettingsByCurrentTheme } from '@/components/widgets/theme-toggle/hooks/use-get-theme-settings-by-current-theme'
+import { useGetUser } from '@/hooks/actions/user/use-get-user'
+import {
+	Avatar,
+	Button,
+	Popover,
+	Separator,
+	Spinner,
+	toast,
+} from '@heroui/react'
+import clsx from 'clsx'
+import { signOut, useSession } from 'next-auth/react'
+import { useEffect, useState } from 'react'
+import { IoLogOut, IoMoon, IoSunny } from 'react-icons/io5'
+import styles from './sidebar-user-menu.module.css'
 import {
 	getSidebarUserDisplayName,
 	getSidebarUserInitials,
 	getSidebarUserSystemRoleLabel,
-} from './utils/sidebar-user-menu.utils';
+} from './utils/sidebar-user-menu.utils'
 
 interface ISidebarUserMenuProps {
-	isExpanded?: boolean;
-	placement?: 'top' | 'right' | 'bottom' | 'bottom end';
-	variant?: 'sidebar' | 'mobile';
+	isExpanded?: boolean
+	placement?: 'top' | 'right' | 'bottom' | 'bottom end'
+	variant?: 'sidebar' | 'mobile'
 }
 
 export const SidebarUserMenu = ({
@@ -27,38 +32,38 @@ export const SidebarUserMenu = ({
 	placement = 'top',
 	variant = 'sidebar',
 }: ISidebarUserMenuProps) => {
-	const { data: session } = useSession();
-	const sessionUser = session?.user;
-	const userId = sessionUser?.id;
+	const { data: session } = useSession()
+	const sessionUser = session?.user
+	const userId = sessionUser?.id
 
 	const { data: userData, isLoading: isUserLoading } = useGetUser({
 		userId,
 		preset: 'BASE',
-	});
+	})
 
-	const [isMounted, setIsMounted] = useState(false);
-	const { toggleTheme, resolvedTheme } = useGetThemeSettingsByCurrentTheme();
+	const [isMounted, setIsMounted] = useState(false)
+	const { toggleTheme, resolvedTheme } = useGetThemeSettingsByCurrentTheme()
 
 	useEffect(() => {
 		setTimeout(() => {
-			setIsMounted(true);
-		}, 0);
-	}, []);
+			setIsMounted(true)
+		}, 0)
+	}, [])
 
-	const displayName = getSidebarUserDisplayName(userData, sessionUser?.email);
-	const initials = getSidebarUserInitials(userData, sessionUser?.email);
+	const displayName = getSidebarUserDisplayName(userData, sessionUser?.email)
+	const initials = getSidebarUserInitials(userData, sessionUser?.email)
 	const systemRoleLabel = getSidebarUserSystemRoleLabel(
-		sessionUser?.role ?? userData?.role
-	);
+		sessionUser?.role ?? userData?.role,
+	)
 
-	const isDarkTheme = resolvedTheme === 'dark';
-	const isMobileVariant = variant === 'mobile';
-	const isSidebarCollapsed = variant === 'sidebar' && !isExpanded;
+	const isDarkTheme = resolvedTheme === 'dark'
+	const isMobileVariant = variant === 'mobile'
+	const isSidebarCollapsed = variant === 'sidebar' && !isExpanded
 
 	const handleSignOut = async () => {
-		toast.info('Выход из системы...', { isLoading: true });
-		await signOut();
-	};
+		toast.info('Выход из системы...', { isLoading: true })
+		await signOut()
+	}
 
 	return (
 		<Popover>
@@ -69,26 +74,26 @@ export const SidebarUserMenu = ({
 			>
 				{isMobileVariant ? (
 					<button
-						type="button"
+						type='button'
 						className={styles.mobile_trigger}
-						aria-label="Меню пользователя"
+						aria-label='Меню пользователя'
 					>
-						<Avatar size="sm" color="accent">
+						<Avatar size='sm' color='accent'>
 							<Avatar.Fallback>{initials}</Avatar.Fallback>
 						</Avatar>
 						<span className={styles.mobile_trigger_label}>Профиль</span>
 					</button>
 				) : (
 					<Button
-						variant="ghost"
+						variant='ghost'
 						isIconOnly={isSidebarCollapsed}
 						size={isExpanded ? 'md' : 'sm'}
 						className={clsx(styles.trigger_button, {
 							[styles.trigger_button_collapsed]: isSidebarCollapsed,
 						})}
-						aria-label="Меню пользователя"
+						aria-label='Меню пользователя'
 					>
-						<Avatar size="sm" color="accent">
+						<Avatar size='sm' color='accent'>
 							<Avatar.Fallback>{initials}</Avatar.Fallback>
 						</Avatar>
 						{isExpanded ? (
@@ -102,12 +107,12 @@ export const SidebarUserMenu = ({
 					{/* PROFILE */}
 					{isUserLoading ? (
 						<div className={styles.loading_state}>
-							<Spinner size="sm" />
+							<Spinner size='sm' />
 						</div>
 					) : (
 						<>
 							<div className={styles.profile_section}>
-								<Avatar size="md" color="accent">
+								<Avatar size='md' color='accent'>
 									<Avatar.Fallback>{initials}</Avatar.Fallback>
 								</Avatar>
 								<div className={styles.profile_text}>
@@ -135,22 +140,11 @@ export const SidebarUserMenu = ({
 					{/* ACTIONS */}
 					<div className={styles.actions}>
 						<div className={styles.actions_icons}>
-							<Link href="/settings" className={styles.action_icon_link}>
-								<Button
-									isIconOnly
-									variant="ghost"
-									size="sm"
-									aria-label="Настройки"
-									className={styles.action_icon_button}
-								>
-									<LuSettings size={17} />
-								</Button>
-							</Link>
 							{isMounted ? (
 								<Button
 									isIconOnly
-									variant="ghost"
-									size="sm"
+									variant='ghost'
+									size='sm'
 									aria-label={
 										isDarkTheme
 											? 'Переключить на светлую тему'
@@ -164,8 +158,8 @@ export const SidebarUserMenu = ({
 							) : null}
 						</div>
 						<Button
-							variant="danger-soft"
-							size="sm"
+							variant='danger-soft'
+							size='sm'
 							className={'text-[12px]'}
 							onPress={handleSignOut}
 						>
@@ -176,5 +170,5 @@ export const SidebarUserMenu = ({
 				</Popover.Dialog>
 			</Popover.Content>
 		</Popover>
-	);
-};
+	)
+}
