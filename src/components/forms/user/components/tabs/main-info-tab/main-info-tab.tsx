@@ -28,7 +28,7 @@ export const MainInfoTab = ({ email, id }: IMainInfoTabProps) => {
 	const onSubmit = useOnSubmitUserEditForm(id);
 
 	return (
-		<BaseForm onSubmit={onSubmit}>
+		<BaseForm className="flex-row" onSubmit={onSubmit}>
 			<div className="w-full flex items-start justify-between gap-2">
 				<div className="flex flex-col gap-2 w-full">
 					<TextField isDisabled>

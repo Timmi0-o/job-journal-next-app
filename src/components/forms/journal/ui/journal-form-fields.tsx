@@ -28,7 +28,7 @@ export const JournalFormFields = ({ id }: IJournalFormFieldsProps) => {
 	const { handleSubmit: onSubmit } = useJournalForm(id);
 
 	return (
-		<BaseForm id="journal-edit-form" onSubmit={onSubmit}>
+		<BaseForm id="journal-edit-form" className="flex-row" onSubmit={onSubmit}>
 			<div className="flex gap-4 items-start">
 				<div className="flex flex-col gap-4 flex-1 w-full">
 					<SelectJobVariantSelect<IJournalFormValues> />

@@ -85,7 +85,7 @@ export const UnitCreateForm = () => {
 
 	return (
 		<FormProvider {...unitForm}>
-			<BaseForm id="unit-create-form" onSubmit={onSubmit}>
+			<BaseForm id="unit-create-form" className="flex-row" onSubmit={onSubmit}>
 				<FormTabs tabs={tabs} />
 				<FormActionBar
 					primaryIcon={<FaSave />}

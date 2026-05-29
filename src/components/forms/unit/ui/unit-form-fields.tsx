@@ -24,7 +24,7 @@ export const UnitFormFields = ({ id }: IUnitFormFieldsProps) => {
 	const { handleSubmit: onSubmit } = useUnitForm(id);
 
 	return (
-		<BaseForm id="unit-edit-form" onSubmit={onSubmit}>
+		<BaseForm id="unit-edit-form" className="flex-row" onSubmit={onSubmit}>
 			<div className="flex gap-4 items-start">
 				<div className="flex flex-col gap-2 flex-1 w-full">
 					<Controller

@@ -14,7 +14,10 @@ import {
 	USER_ROLE_LABELS,
 	USER_STATUS_LABELS,
 } from '@/enums/user.enum'
-import { bindRhfNullableTextField, bindRhfTextField } from '@/utils/rhf-heroui-field.util'
+import {
+	bindRhfNullableTextField,
+	bindRhfTextField,
+} from '@/utils/rhf-heroui-field.util'
 import {
 	FieldError,
 	Input,
@@ -208,9 +211,7 @@ export const UserCreateForm = () => {
 															placeholder='Пароль'
 															{...bindRhfTextField(field)}
 														/>
-														<FieldError>
-															{errors.password?.message}
-														</FieldError>
+														<FieldError>{errors.password?.message}</FieldError>
 													</TextField>
 												)}
 											/>

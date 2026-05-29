@@ -85,7 +85,7 @@ export const JobVariantCreateForm = () => {
 
 	return (
 		<FormProvider {...jobVariantForm}>
-			<BaseForm id="job-variant-create-form" onSubmit={onSubmit}>
+			<BaseForm id="job-variant-create-form" className="flex-row" onSubmit={onSubmit}>
 				<FormTabs tabs={tabs} />
 				<FormActionBar
 					primaryIcon={<FaSave />}

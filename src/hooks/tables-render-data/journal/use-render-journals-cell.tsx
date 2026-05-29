@@ -36,11 +36,16 @@ export const useRenderJournalsCell = () => {
 				);
 			}
 			case 'jobVariantId':
-				return <span>{journal.jobVariantId}</span>;
-			case 'amount':
-				return <span>{journal.amount}</span>;
-			case 'unitId':
-				return <span>{journal.unitId}</span>;
+				return <span>{journal.jobVariant?.name ?? journal.jobVariantId}</span>;
+			case 'amount': {
+				const unit = journal.unit?.name ?? journal.unitId;
+				return (
+					<span>
+						{journal.amount}
+						{unit ? ` ${unit}` : ''}
+					</span>
+				);
+			}
 			case 'endDate':
 				return <div>{FormatDate(new Date(journal.endDate))}</div>;
 			case 'createdAt':

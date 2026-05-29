@@ -24,7 +24,7 @@ export const JobVariantFormFields = ({ id }: IJobVariantFormFieldsProps) => {
 	const { handleSubmit: onSubmit } = useJobVariantForm(id);
 
 	return (
-		<BaseForm id="job-variant-edit-form" onSubmit={onSubmit}>
+		<BaseForm id="job-variant-edit-form" className="flex-row" onSubmit={onSubmit}>
 			<div className="flex gap-4 items-start">
 				<div className="flex flex-col gap-2 flex-1 w-full">
 					<Controller

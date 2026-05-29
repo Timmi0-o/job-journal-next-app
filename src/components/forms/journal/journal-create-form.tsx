@@ -111,7 +111,7 @@ export const JournalCreateForm = () => {
 
 	return (
 		<FormProvider {...journalForm}>
-			<BaseForm id="journal-create-form" onSubmit={onSubmit}>
+			<BaseForm id="journal-create-form" className="flex-row" onSubmit={onSubmit}>
 				<FormTabs tabs={tabs} />
 				<FormActionBar
 					primaryIcon={<FaSave />}
