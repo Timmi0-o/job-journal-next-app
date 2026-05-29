@@ -1,0 +1,45 @@
+@reference '@/tailwindcss';
+
+.container {
+	@apply flex h-full min-h-dvh;
+	background: var(--background);
+
+	.content {
+
+		@apply flex min-h-0 flex-1 flex-col min-w-0 rounded-lg pr-2 pl-4 py-2 h-full w-full overflow-x-clip;
+		background: var(--background);
+		animation: pageSlideIn 0.3s ease-out forwards;
+		opacity: 0;
+
+		&[data-sidebar='expanded'] {
+			--page-max-width-lg: 992px;
+			--page-max-width-2xl: 1668px;
+		}
+
+		&[data-sidebar='collapsed'] {
+			--page-max-width-lg: 1300px;
+			--page-max-width-2xl: 1900px;
+		}
+
+
+		@apply pb-[90px];
+	}
+
+	@media (max-width: 1024px) {
+		@apply m-0;
+
+		.content {
+			@apply pb-20;
+		}
+	}
+}
+
+@keyframes pageSlideIn {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}

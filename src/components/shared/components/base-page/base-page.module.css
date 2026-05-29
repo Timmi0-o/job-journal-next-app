@@ -1,0 +1,69 @@
+@reference '@/tailwindcss';
+
+.root {
+	@apply relative flex h-full min-h-0 min-w-0 w-full flex-col;
+
+	.content {
+		@apply mx-auto flex min-h-0 min-w-0 w-full flex-1 flex-col;
+	}
+}
+
+.header {
+	@apply mb-2 flex shrink-0 flex-col gap-1.5 rounded-xl px-3 py-2;
+
+
+}
+
+.breadcrumbs {
+	@apply text-[11px] leading-none;
+
+	:global(a),
+	:global(span) {
+		@apply text-zinc-400 transition-colors duration-150;
+	}
+
+	:global(a:hover) {
+		@apply text-zinc-500;
+	}
+
+	:global([aria-current='page']) {
+		@apply font-medium text-zinc-500;
+	}
+
+	@variant dark {
+
+		:global(a),
+		:global(span) {
+			@apply text-zinc-500;
+		}
+
+		:global(a:hover) {
+			@apply text-zinc-400;
+		}
+
+		:global([aria-current='page']) {
+			@apply text-zinc-400;
+		}
+	}
+}
+
+.headerRow {
+	@apply flex w-full min-w-0 items-center justify-between gap-3;
+}
+
+.titleWrap {
+	@apply flex min-w-0 shrink-0 items-center;
+}
+
+.title {
+	@apply truncate text-[16px] tracking-[0.03em] font-bold text-zinc-600;
+	transform: scale(1, 1.4);
+
+	@variant dark {
+		@apply text-zinc-300;
+	}
+}
+
+.headerActions {
+	@apply flex min-w-0 flex-1 flex-wrap items-center justify-end gap-2;
+}

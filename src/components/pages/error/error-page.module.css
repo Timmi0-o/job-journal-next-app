@@ -1,0 +1,55 @@
+@reference '@/tailwindcss';
+
+.container {
+	@apply relative flex items-center justify-center h-full py-8 px-4 rounded-[32px];
+	background: var(--error-bg);
+
+	.card {
+		@apply relative w-full max-w-[420px] overflow-hidden border rounded-[32px];
+		box-shadow: var(--error-card-shadow);
+		background: var(--error-card-bg);
+		border-color: var(--error-card-border);
+
+		.cardHeader {
+			@apply flex flex-col items-center gap-4 pt-8 px-6 pb-5;
+
+			.iconContainer {
+				@apply grid place-items-center size-14 rounded-xl;
+				background: var(--error-icon-bg);
+
+				.icon {
+					color: var(--error-icon-color);
+				}
+			}
+
+			.title {
+				@apply m-0 text-xl font-semibold leading-tight;
+				color: var(--error-title-color);
+			}
+		}
+
+		.cardBody {
+			@apply flex flex-col gap-4 px-6 pb-6 text-center;
+
+			.description {
+				@apply m-0 text-sm leading-relaxed;
+				color: var(--error-text-color);
+			}
+
+			.errorBox {
+				@apply rounded-lg border p-3 text-left;
+				background: var(--error-box-bg);
+				border-color: var(--error-box-border);
+
+				.errorText {
+					@apply m-0 text-xs leading-relaxed break-words font-mono;
+					color: var(--error-box-text);
+				}
+			}
+		}
+
+		.cardFooter {
+			@apply flex flex-wrap justify-center gap-3 px-6 py-4;
+		}
+	}
+}

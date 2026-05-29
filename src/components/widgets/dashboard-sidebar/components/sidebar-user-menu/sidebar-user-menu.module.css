@@ -1,0 +1,133 @@
+@reference '@/tailwindcss';
+
+.trigger {
+	@apply w-full min-w-0;
+}
+
+.trigger_button {
+	@apply w-full justify-start gap-2.5 px-2.5 min-h-10;
+}
+
+.trigger_button_collapsed {
+	@apply justify-center px-0 min-w-10 size-10;
+}
+
+.trigger_label {
+	@apply text-sm font-medium truncate text-left;
+}
+
+.popover_content {
+	@apply w-[260px] overflow-hidden rounded-[26px] backdrop-blur-sm bg-white/60 p-0;
+	border: 1px solid hsl(220 13% 90%);
+	box-shadow:
+		0 1px 2px rgba(15, 23, 42, 0.04),
+		0 16px 36px -18px rgba(15, 23, 42, 0.32);
+}
+
+:global(.dark) .popover_content {
+	@apply bg-zinc-900/50;
+	border-color: hsl(220 12% 20%);
+	box-shadow:
+		0 0 0 1px rgba(255, 255, 255, 0.02),
+		0 16px 36px -18px rgba(0, 0, 0, 0.75);
+}
+
+.dialog {
+	@apply flex flex-col outline-none px-2 py-4;
+}
+
+.profile_section {
+	@apply flex items-center gap-2.5 px-3 py-2.5;
+}
+
+.profile_text {
+	@apply flex min-w-0 flex-1 flex-col gap-0.5;
+}
+
+.profile_name {
+	@apply text-sm font-semibold leading-tight text-zinc-900 truncate;
+}
+
+.profile_email {
+	@apply text-xs leading-4 text-zinc-500 truncate;
+}
+
+:global(.dark) .profile_name {
+	@apply text-zinc-50;
+}
+
+:global(.dark) .profile_email {
+	@apply text-zinc-400;
+}
+
+.loading_state {
+	@apply flex items-center justify-center px-3 py-6;
+}
+
+.meta_list {
+	@apply flex flex-col gap-2.5 px-3 py-3 m-0;
+}
+
+.meta_row {
+	@apply flex flex-col gap-0.5;
+}
+
+.meta_label {
+	@apply text-[10px] font-semibold uppercase tracking-[0.08em] text-zinc-400 leading-none;
+}
+
+.meta_value {
+	@apply text-[13px] leading-[18px] font-medium text-zinc-800 m-0;
+	word-break: break-word;
+}
+
+:global(.dark) .meta_label {
+	@apply text-zinc-500;
+}
+
+:global(.dark) .meta_value {
+	@apply text-zinc-100;
+}
+
+.divider {
+	@apply mx-0 my-0;
+}
+
+.actions {
+	@apply flex items-center justify-between gap-2 px-3 py-2;
+}
+
+.actions_icons {
+	@apply flex items-center gap-0.5;
+}
+
+.action_icon_link {
+	@apply no-underline;
+}
+
+.action_icon_button {
+	@apply min-w-8 size-8;
+}
+
+
+.mobile_trigger {
+	@apply flex flex-col items-center justify-center gap-1 rounded-2xl px-3.5 py-2 text-zinc-500 min-w-[56px] min-h-[50px];
+}
+
+.mobile_trigger_active {
+	@apply bg-zinc-100 text-zinc-900;
+	box-shadow: inset 0 0 0 1px rgb(24 24 27 / 0.08);
+}
+
+:global(.dark) .mobile_trigger {
+	@apply text-zinc-400;
+}
+
+:global(.dark) .mobile_trigger_active {
+	@apply bg-white/10 text-zinc-50;
+	box-shadow: inset 0 0 0 1px rgb(255 255 255 / 0.1);
+}
+
+.mobile_trigger_label {
+	@apply text-[10px] font-semibold leading-tight tracking-tight;
+}

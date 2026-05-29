@@ -1,0 +1,5 @@
+@reference '@/tailwindcss';
+
+.input {
+	@apply w-full rounded-xl;
+}

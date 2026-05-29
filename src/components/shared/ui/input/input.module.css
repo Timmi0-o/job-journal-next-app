@@ -1,0 +1,13 @@
+@reference '@/tailwindcss';
+
+.suffix {
+	@apply gap-0.5 px-1;
+}
+
+.dropdownTrigger {
+	@apply min-w-0 max-w-[90px] px-2;
+}
+
+.dropdownLabel {
+	@apply truncate text-xs font-medium;
+}

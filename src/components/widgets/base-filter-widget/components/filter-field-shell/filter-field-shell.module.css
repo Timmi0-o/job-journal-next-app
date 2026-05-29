@@ -1,0 +1,73 @@
+@reference '@/tailwindcss';
+
+/* Vertical: label + control (Linear / Stripe filter field) */
+.root {
+	@apply flex w-full min-w-0;
+}
+
+.root_vertical {
+	@apply flex-col gap-1.5;
+}
+
+.label {
+	@apply block text-[13px] font-medium leading-snug text-zinc-700;
+
+	@variant dark {
+		@apply text-zinc-200;
+	}
+}
+
+.description {
+	@apply -mt-0.5 text-xs leading-relaxed text-zinc-500;
+
+	@variant dark {
+		@apply text-zinc-400;
+	}
+}
+
+.control {
+	@apply min-w-0 w-full;
+}
+
+/* Horizontal: interactive row (Notion / iOS settings style) */
+.root_clickable {
+	@apply cursor-pointer select-none;
+}
+
+.root_horizontal {
+	@apply flex-row items-center justify-between gap-4 rounded-2xl border border-zinc-200/90 bg-zinc-50/50 p-2.5;
+	@apply transition-all;
+	@apply hover:border-zinc-300 hover:bg-white;
+	@apply focus-within:border-zinc-300 focus-within:bg-white;
+
+	@variant dark {
+		@apply border-zinc-700/55 bg-zinc-900/40 shadow-none;
+		@apply hover:border-zinc-600 hover:bg-zinc-900/70;
+		@apply focus-within:border-zinc-500 focus-within:bg-zinc-900/80;
+
+	}
+}
+
+.row_meta {
+	@apply flex min-w-0 flex-1 flex-col gap-0.5;
+}
+
+.label_horizontal {
+	@apply text-sm font-medium leading-snug text-zinc-800;
+
+	@variant dark {
+		@apply text-zinc-100;
+	}
+}
+
+.description_horizontal {
+	@apply text-xs leading-relaxed text-zinc-500;
+
+	@variant dark {
+		@apply text-zinc-400;
+	}
+}
+
+.control_horizontal {
+	@apply w-auto shrink-0;
+}

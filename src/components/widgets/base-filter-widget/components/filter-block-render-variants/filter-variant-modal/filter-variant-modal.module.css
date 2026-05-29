@@ -1,0 +1,21 @@
+@reference '@/tailwindcss';
+
+.dialog {
+	@apply rounded-l-[28px];
+}
+
+.header {
+	@apply flex flex-col gap-1 border-b border-zinc-200/70 pb-4;
+
+	@variant dark {
+		@apply border-zinc-700/50;
+	}
+}
+
+.body {
+	@apply flex flex-col gap-4 py-4;
+}
+
+.footer {
+	@apply pt-0;
+}

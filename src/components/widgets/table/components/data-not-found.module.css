@@ -1,0 +1,51 @@
+@reference '@/tailwindcss';
+
+.root {
+	@apply flex w-full min-h-[230px] min-w-0 items-center justify-center border-t border-zinc-200/60 px-4 py-9;
+
+	@variant dark {
+		@apply border-zinc-700/60;
+	}
+}
+
+.inner {
+	@apply flex min-w-0 w-full max-w-[480px] flex-col items-center justify-center gap-3.5 px-6 py-9 text-center;
+
+	@variant dark {
+		@apply text-zinc-400;
+	}
+}
+
+.iconWrap {
+	@apply flex size-14 shrink-0 items-center justify-center rounded-full bg-zinc-100/80 text-zinc-400;
+
+	svg {
+		@apply size-7;
+	}
+
+	@variant dark {
+		@apply bg-zinc-800/70 text-zinc-500;
+	}
+}
+
+.textCol {
+	@apply flex min-w-0 flex-col items-center gap-2;
+}
+
+.kicker {
+	@apply text-xs font-medium uppercase tracking-[0.18em] text-zinc-400;
+
+	@variant dark {
+		@apply text-zinc-500;
+	}
+}
+
+@media (max-width: 640px) {
+	.root {
+		@apply min-h-[240px] px-3 py-7;
+	}
+
+	.inner {
+		@apply px-4 py-7;
+	}
+}

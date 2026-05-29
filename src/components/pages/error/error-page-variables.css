@@ -1,0 +1,27 @@
+:root {
+	--error-bg: #f1f5f9;
+	--error-card-bg: #ffffff;
+	--error-card-border: #e2e8f0;
+	--error-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+	--error-icon-bg: #fef2f2;
+	--error-icon-color: #dc2626;
+	--error-title-color: #1e293b;
+	--error-text-color: #64748b;
+	--error-box-bg: #fef2f2;
+	--error-box-border: #fecaca;
+	--error-box-text: #991b1b;
+}
+
+html.dark {
+	--error-bg: #0f172a;
+	--error-card-bg: #1e293b;
+	--error-card-border: #334155;
+	--error-card-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+	--error-icon-bg: rgba(220, 38, 38, 0.15);
+	--error-icon-color: #f87171;
+	--error-title-color: #f1f5f9;
+	--error-text-color: #94a3b8;
+	--error-box-bg: rgba(220, 38, 38, 0.1);
+	--error-box-border: rgba(248, 113, 113, 0.3);
+	--error-box-text: #fca5a5;
+}

@@ -1,0 +1,65 @@
+@reference '@/tailwindcss';
+
+.filters {
+	@apply flex flex-col gap-3;
+}
+
+.header {
+	@apply flex items-center justify-between gap-3 min-h-[40px];
+}
+
+.header_with_icon {
+	@apply flex items-center gap-3 min-w-0;
+}
+
+.header_icon {
+	@apply flex h-10 w-10 items-center justify-center rounded-xl shrink-0;
+}
+
+.header_titles {
+	@apply flex flex-col min-w-0;
+}
+
+.title {
+	@apply text-lg font-semibold tracking-tight text-zinc-900;
+
+	@variant dark {
+		@apply text-zinc-50;
+	}
+}
+
+.title_compact {
+	@apply text-sm;
+}
+
+.subtitle {
+	@apply text-xs text-zinc-500;
+
+	@variant dark {
+		@apply text-zinc-400;
+	}
+}
+
+.footer {
+	@apply flex flex-col gap-3 border-t border-zinc-200/60 pt-4 w-full;
+
+	@variant dark {
+		@apply border-zinc-700/40;
+	}
+}
+
+.footer_actions {
+	@apply flex w-full gap-2;
+}
+
+.on_close_action_group {
+	@apply flex flex-wrap gap-x-4 gap-y-2;
+}
+
+.on_close_action_label {
+	@apply text-sm text-zinc-600;
+
+	@variant dark {
+		@apply text-zinc-400;
+	}
+}

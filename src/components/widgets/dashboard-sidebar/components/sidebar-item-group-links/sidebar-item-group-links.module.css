@@ -1,0 +1,292 @@
+@reference '@/tailwindcss';
+
+/* Compact collapsible group (replaces Accordion) */
+.group {
+	@apply flex flex-col gap-0;
+}
+
+.groupTrigger {
+	@apply flex items-center justify-between gap-1 w-full rounded-xl px-2.5 py-2 min-h-10 my-0.5 text-left font-medium text-sm transition-colors duration-150 border-0 cursor-pointer;
+	background: transparent;
+}
+
+.groupTriggerContent {
+	@apply flex items-center gap-2 min-w-0;
+}
+
+.iconWithChevron {
+	@apply flex shrink-0 items-center gap-0.5 leading-none;
+}
+
+.iconWithChevronCollapsed {
+	@apply flex-col gap-0;
+
+	&> :last-child {
+		@apply -mt-0.5;
+	}
+}
+
+.groupLabel {
+	@apply truncate;
+}
+
+.chevron {
+	@apply shrink-0 transition-transform duration-200 ease-out;
+}
+
+.chevronOpen {
+	@apply rotate-90;
+}
+
+.collapsePanel {
+	display: grid;
+	grid-template-rows: 0fr;
+	transition: grid-template-rows 0.22s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.collapsePanelOpen {
+	grid-template-rows: 1fr;
+}
+
+.collapsePanelInner {
+	@apply min-h-0 overflow-hidden;
+}
+
+.groupChildren {
+	@apply flex flex-col gap-0.5 pl-2 pr-0 pt-1 pb-1 border-l border-transparent;
+	@apply border-l-zinc-200/45;
+	margin-left: 0.65rem;
+}
+
+:global(.dark) .groupChildren {
+	border-left-color: hsl(220 12% 16% / 0.45);
+}
+
+.nestedGroup {
+	@apply flex flex-col gap-0;
+}
+
+.nestedTrigger {
+	@apply flex items-center justify-between w-full rounded-xl px-2 py-1.5 min-h-8 text-left font-medium text-sm transition-colors duration-150 border-0 cursor-pointer;
+	background: transparent;
+}
+
+.nestedTriggerContent {
+	@apply flex items-center gap-2 min-w-0;
+}
+
+.nestedChildren {
+	@apply flex flex-col gap-0.5 pl-1 py-0.5 mt-0;
+	margin-left: 0.5rem;
+}
+
+.titleWrapper {
+	@apply rounded-xl px-2.5 py-2 font-medium text-sm transition-colors duration-150;
+}
+
+.titleWrapperActive {
+	background: hsl(0 0% 100% / 0.92);
+	color: hsl(220 15% 12%);
+	box-shadow:
+		inset 0 0 0 1px hsl(220 13% 88% / 0.55),
+		0 1px 2px hsl(220 20% 50% / 0.05);
+}
+
+:global(.dark) .titleWrapperActive {
+	@apply bg-white/10 text-zinc-50;
+	box-shadow: inset 0 0 0 1px hsl(0 0% 100% / 0.06);
+}
+
+.titleWrapperInactive {
+	color: hsl(var(--sidebar-icon, 0 0% 42%));
+}
+
+.titleWrapperInactive:hover {
+	background: hsl(var(--sidebar-hover, 0 0% 96%));
+	color: hsl(var(--sidebar-icon-hover, 0 0% 18%));
+	box-shadow: inset 0 0 0 1px hsl(220 13% 91% / 0.55);
+}
+
+:global(.dark) .titleWrapperInactive {
+	color: hsl(220 10% 62%);
+}
+
+:global(.dark) .titleWrapperInactive:hover {
+	background: hsl(220 12% 16%);
+	color: hsl(220 10% 88%);
+	box-shadow: inset 0 0 0 1px hsl(220 12% 22% / 0.4);
+}
+
+.trigger {
+	@apply rounded-xl;
+}
+
+.trigger:hover {
+	background: transparent;
+}
+
+.button {
+	@apply rounded-xl font-medium text-sm min-h-8 px-2.5 py-1.5 transition-all duration-150 justify-start no-underline;
+}
+
+.buttonActive {
+	background: hsl(0 0% 100% / 0.92);
+	color: hsl(220 15% 12%);
+	box-shadow:
+		inset 0 0 0 1px hsl(220 13% 88% / 0.55),
+		0 1px 2px hsl(220 20% 50% / 0.05);
+
+	:global(.dark) & {
+		background: hsl(0 0% 100% / 0.06);
+		color: hsl(220 10% 78%);
+		box-shadow: inset 0 0 0 1px hsl(0 0% 100% / 0.05);
+	}
+}
+
+.buttonInactive {
+	color: hsl(var(--sidebar-icon, 0 0% 42%));
+	background: transparent;
+}
+
+.buttonInactive:hover {
+	background: hsl(var(--sidebar-hover, 0 0% 96%));
+	color: hsl(var(--sidebar-icon-hover, 0 0% 18%));
+	box-shadow: inset 0 0 0 1px hsl(220 13% 91% / 0.55);
+}
+
+:global(.dark) .buttonInactive {
+	color: hsl(220 10% 62%);
+}
+
+:global(.dark) .buttonInactive:hover {
+	background: hsl(220 12% 16%);
+	color: hsl(220 10% 88%);
+	box-shadow: inset 0 0 0 1px hsl(220 12% 22% / 0.4);
+}
+
+.buttonSmall {
+	@apply text-sm;
+}
+
+/* Collapsed: popover trigger and content */
+.collapsedGroups {
+	@apply flex w-full flex-col;
+}
+
+.popoverTriggerWrapper {
+	@apply w-full flex justify-center;
+}
+
+.popoverTrigger {
+	@apply flex min-h-11 w-full items-center justify-center rounded-xl px-1 py-2 my-0.5;
+}
+
+.popoverTriggerInner {
+	@apply flex items-center justify-center leading-none;
+}
+
+.popoverTriggerActive {
+	background: hsl(0 0% 100% / 0.92);
+	color: hsl(220 15% 12%);
+	box-shadow:
+		inset 0 0 0 1px hsl(220 13% 88% / 0.55),
+		0 1px 2px hsl(220 20% 50% / 0.05);
+}
+
+:global(.dark) .popoverTriggerActive {
+	@apply bg-white/10 text-zinc-50;
+	box-shadow: inset 0 0 0 1px hsl(0 0% 100% / 0.06);
+}
+
+.popoverTriggerInactive {
+	color: hsl(var(--sidebar-icon, 0 0% 42%));
+	background: transparent;
+}
+
+.popoverTriggerInactive:hover {
+	background: hsl(var(--sidebar-hover, 0 0% 96%));
+	color: hsl(var(--sidebar-icon-hover, 0 0% 18%));
+	box-shadow: inset 0 0 0 1px hsl(220 13% 91% / 0.55);
+}
+
+:global(.dark) .popoverTriggerInactive {
+	color: hsl(220 10% 62%);
+}
+
+:global(.dark) .popoverTriggerInactive:hover {
+	background: hsl(220 12% 16%);
+	color: hsl(220 10% 88%);
+	box-shadow: inset 0 0 0 1px hsl(220 12% 22% / 0.4);
+}
+
+/* Popover в свёрнутом сайдбаре — островок, удобные отступы */
+.popoverContent {
+	@apply flex flex-col gap-1 rounded-2xl min-w-[220px] max-w-[300px] p-1.5;
+	@apply overflow-y-auto overscroll-contain;
+	max-height: min(70vh, 420px);
+	background: hsl(var(--sidebar-bg, 0 0% 100%) / 0.96);
+	backdrop-filter: blur(16px);
+	border: 1px solid hsl(var(--sidebar-border, 0 0% 88%) / 0.9);
+	box-shadow:
+		0 1px 2px rgba(15, 23, 42, 0.06),
+		0 18px 44px -22px rgba(15, 23, 42, 0.38);
+	scrollbar-width: thin;
+}
+
+:global(.dark) .popoverContent {
+	background: hsl(var(--sidebar-bg-dark, 222 14% 10%) / 0.96);
+	border-color: hsl(var(--sidebar-border-dark, 220 12% 20%) / 0.9);
+	box-shadow:
+		0 0 0 1px rgba(255, 255, 255, 0.03),
+		0 20px 44px -22px rgba(0, 0, 0, 0.75);
+}
+
+.popoverContent .popoverButton {
+	@apply rounded-xl font-medium text-sm justify-start w-full min-h-10 transition-colors duration-150 px-2.5 flex;
+	@apply no-underline;
+}
+
+.popoverButtonActive {
+	background: hsl(0 0% 100% / 0.92);
+	color: hsl(220 15% 12%);
+	box-shadow:
+		inset 0 0 0 1px hsl(220 13% 88% / 0.55),
+		0 1px 2px hsl(220 20% 50% / 0.05);
+
+	:global(.dark) & {
+		background: hsl(0 0% 100% / 0.06);
+		color: hsl(220 10% 78%);
+		box-shadow: inset 0 0 0 1px hsl(0 0% 100% / 0.05);
+	}
+}
+
+.popoverButtonInactive {
+	color: hsl(var(--sidebar-icon, 0 0% 30%));
+	background: transparent;
+}
+
+.popoverButtonInactive:hover {
+	background: hsl(var(--sidebar-hover, 0 0% 96%));
+	color: hsl(var(--sidebar-icon-hover, 0 0% 12%));
+	box-shadow: inset 0 0 0 1px hsl(220 13% 91% / 0.55);
+}
+
+:global(.dark) .popoverButtonInactive {
+	color: hsl(220 10% 70%);
+}
+
+:global(.dark) .popoverButtonInactive:hover {
+	background: hsl(220 12% 18%);
+	color: hsl(220 10% 92%);
+	box-shadow: inset 0 0 0 1px hsl(220 12% 24% / 0.4);
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.collapsePanel {
+		transition: none;
+	}
+
+	.chevron {
+		transition: none;
+	}
+}

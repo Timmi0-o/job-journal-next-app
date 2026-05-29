@@ -1,0 +1,14 @@
+@reference '@/tailwindcss';
+
+.table_wrapper {
+	@apply min-w-0 w-full h-fit relative;
+
+	/*
+	 * В @heroui/styles у .table__row последняя строка без border-b, но ячейки (.table__cell)
+	 * всегда с border-b — из-за этого полоска остаётся под последним рядом.
+	 */
+	:global(tbody tr:last-child td) {
+		@apply border-b-0;
+	}
+
+}

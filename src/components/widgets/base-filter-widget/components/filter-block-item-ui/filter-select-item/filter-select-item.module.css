@@ -1,0 +1,23 @@
+@reference '@/tailwindcss';
+
+.select {
+	@apply w-full;
+}
+
+.select_trigger {
+	@apply flex min-h-10 items-center gap-1 rounded-xl border border-zinc-200 bg-zinc-50 shadow-none transition-colors;
+	@apply hover:border-zinc-300 hover:bg-white data-[focused=true]:border-zinc-400 data-[focused=true]:bg-white;
+
+	@variant dark {
+		@apply border-zinc-700/60 bg-zinc-800/60;
+		@apply hover:border-zinc-600 hover:bg-zinc-900 data-[focused=true]:border-zinc-500 data-[focused=true]:bg-zinc-900;
+	}
+}
+
+.select_value {
+	@apply min-w-0 flex-1;
+}
+
+.label {
+	@apply sr-only;
+}

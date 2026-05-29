@@ -1,26 +1,211 @@
 @import "tailwindcss";
 
+
+@custom-variant dark (&:where([class~="dark"], [class~="dark"] *));
+
+
+@import "@heroui/styles";
+
+
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8f8f8;
+  --foreground: #1a1a1a;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #475569;
+
+  /* Sidebar */
+  --sidebar-border: #f3f4f6;
+  --sidebar-hover-bg: #f3f4f6;
+  --sidebar-icon-inactive: #e5e7eb;
+  --sidebar-link-inactive-bg: #f3f4f6;
+  --sidebar-link-inactive-text: #374151;
+  --sidebar-link-inactive-hover-bg: #e5e7eb;
+  --sidebar-link-inactive-hover-text: #111827;
+
+  /* Preview List */
+  --preview-badge-bg: #e5e7eb;
+  --preview-badge-text: #1f2937;
+  --preview-title: #1f2937;
+  --preview-subtitle: #6b7280;
+  --preview-item-hover: #f3f4f6;
+  --files-tab-label: #334155;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+html.dark {
+  --background: #0c0d0f;
+  --foreground: #e2e8f0;
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #94a3b8;
+
+  /* Sidebar */
+  --sidebar-border: #1f2937;
+  --sidebar-hover-bg: #1f2937;
+  --sidebar-icon-inactive: #374151;
+  --sidebar-link-inactive-bg: #1f2937;
+  --sidebar-link-inactive-text: #d1d5db;
+  --sidebar-link-inactive-hover-bg: #374151;
+  --sidebar-link-inactive-hover-text: #ffffff;
+
+  /* Preview List */
+  --preview-badge-bg: #374151;
+  --preview-badge-text: #e5e7eb;
+  --preview-title: #f3f4f6;
+  --preview-subtitle: #9ca3af;
+  --preview-item-hover: #1f2937;
+  --files-tab-label: #a1a1aa;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+}
+
+.prose h1 {
+  font-size: 2.25rem;
+  font-weight: 700;
+}
+
+.prose h2 {
+  font-size: 1.875rem;
+  font-weight: 700;
+}
+
+.prose h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.prose h4 {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.prose h5 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.prose h6 {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.prose ul {
+  list-style-type: disc !important;
+  padding-left: 1.5rem;
+}
+
+.prose ol {
+  list-style-type: decimal !important;
+  padding-left: 1.5rem;
+}
+
+.prose li {
+  margin: 0.25rem 0;
+}
+
+.prose blockquote {
+  border-left: 4px solid #d1d5db;
+  padding-left: 1rem;
+  color: #4b5563;
+  font-style: italic;
+}
+
+.prose pre {
+  background-color: #1F2937C8;
+  color: #f9fafb;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 0.3rem;
+}
+
+.prose pre code {
+  background: none;
+  color: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  padding: 0;
+}
+
+.prose hr {
+  border-color: #0000006E;
+  margin: 0.3rem;
+}
+
+.prose img {
+  margin: 0.3rem;
+}
+
+.prose a {
+  color: #2563eb;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.prose a:hover {
+  opacity: 0.7;
+  cursor: pointer;
+}
+
+.prose a::before {
+  content: '🔗';
+  display: inline-block;
+  margin-right: 0.25rem;
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
+html.dark .prose {
+  color: var(--foreground);
+}
+
+html.dark .prose blockquote {
+  border-left-color: hsl(220 13% 35%);
+  color: var(--text-secondary);
+}
+
+html.dark .prose pre {
+  background-color: hsl(220 14% 12%);
+  color: hsl(210 20% 96%);
+}
+
+html.dark .prose hr {
+  border-color: hsl(220 12% 25%);
+}
+
+html.dark .prose a {
+  color: hsl(217 91% 60%);
+}
+
+html.dark .prose a:hover {
+  color: hsl(217 91% 70%);
+}
+
+input {
+  outline: 0px solid transparent !important;
+}
+
+/*
+ * HeroUI checkbox: фон поля на светлой теме часто совпадает с фоном страницы,
+ * --field-border по умолчанию прозрачный — без обводки квадрат не виден в выключенном состоянии.
+ * Специфичность ниже правил :hover / checked из @heroui/styles.
+ */
+.checkbox__control {
+  border-width: var(--border-width);
+  border-style: solid;
+  border-color: var(--border);
+}
+
+.checkbox[data-indeterminate="true"] .checkbox__control {
+  border-color: transparent;
 }

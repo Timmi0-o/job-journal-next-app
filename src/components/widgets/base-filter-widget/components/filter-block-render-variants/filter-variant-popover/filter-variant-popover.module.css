@@ -1,0 +1,13 @@
+@reference '@/tailwindcss';
+
+.content {
+	@apply min-w-[420px] max-w-[min(100vw-2rem,520px)] rounded-[28px] border border-transparent bg-white p-0 shadow-xl shadow-black/10;
+
+	@variant dark {
+		@apply border-white/10 bg-zinc-900 shadow-black/30;
+	}
+}
+
+.dialog {
+	@apply outline-none flex flex-col gap-4 p-5;
+}

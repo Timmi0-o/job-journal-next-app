@@ -1,0 +1,9 @@
+@reference '@/tailwindcss';
+
+.control {
+	@apply shrink-0;
+}
+
+.checkbox_control {
+	@apply size-4;
+}

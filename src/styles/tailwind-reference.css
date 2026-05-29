@@ -1,0 +1,7 @@
+@import 'tailwindcss';
+
+/*
+ * Reference-only Tailwind entry for CSS Modules.
+ * `:global(.dark)` is preserved by CSS Modules; plain `.dark` can be scoped.
+ */
+@custom-variant dark (&:where(:global(.dark), :global(.dark) *));
