@@ -6,6 +6,8 @@ import { useManageSearchParams } from '@/hooks/use-manage-search-params';
 import { Key } from '@heroui/react';
 import { observer } from 'mobx-react-lite';
 import { useCallback, useState } from 'react';
+import { FilterDateItem } from './components/filter-block-item-ui/filter-date-item/filter-date-item';
+import { FilterAsyncSelectItem } from './components/filter-block-item-ui/filter-async-select-item/filter-async-select-item';
 import { FilterCheckboxItem } from './components/filter-block-item-ui/filter-checkbox-item/filter-checkbox-item';
 import { FilterInputItem } from './components/filter-block-item-ui/filter-input-item/filter-input-item';
 import { FilterSelectItem } from './components/filter-block-item-ui/filter-select-item/filter-select-item';
@@ -21,11 +23,14 @@ import { IFilterVariantProps } from './types/i-filter-variant-props';
 import {
 	IFilterWidgetCheckboxItem,
 	IFilterWidgetConfig,
+	IFilterWidgetDateItem,
 	IFilterWidgetInputItem,
 	IFilterWidgetItem,
 	IFilterWidgetSelectItem,
+	IFilterWidgetSelectItemDefault,
 	TFilterWidgetFilters,
 	TFilterWidgetVariant,
+	isAsyncFilterSelectItem,
 } from './types/i-filter-widget-config';
 import { IOnCloseAction } from './types/i-on-close-action';
 
@@ -147,15 +152,34 @@ export const BaseFilterWidget = observer(
 
 				if (filter.type === 'SELECT') {
 					const selectItem = filter as IFilterWidgetSelectItem;
+
+					if (isAsyncFilterSelectItem(selectItem)) {
+						return (
+							<FilterAsyncSelectItem
+								key={selectItem.key}
+								item={selectItem}
+								value={filters[selectItem.key] as string | null}
+								setValue={(value) =>
+									setFilters({
+										...filters,
+										[selectItem.key]: value,
+									} as typeof filters)
+								}
+							/>
+						);
+					}
+
+					const defaultSelectItem = selectItem as IFilterWidgetSelectItemDefault;
+
 					return (
 						<FilterSelectItem
-							key={selectItem.key}
-							item={selectItem}
-							value={filters[selectItem.key] as Key | Key[] | null}
+							key={defaultSelectItem.key}
+							item={defaultSelectItem}
+							value={filters[defaultSelectItem.key] as Key | Key[] | null}
 							setValue={(value) =>
 								setFilters({
 									...filters,
-									[selectItem.key]: value,
+									[defaultSelectItem.key]: value,
 								} as typeof filters)
 							}
 						/>
@@ -173,6 +197,24 @@ export const BaseFilterWidget = observer(
 								setFilters({
 									...filters,
 									[checkboxItem.key]: isValue,
+								} as typeof filters)
+							}
+						/>
+					);
+				}
+
+				if (filter.type === 'DATE') {
+					const dateItem = filter as IFilterWidgetDateItem;
+
+					return (
+						<FilterDateItem
+							key={dateItem.key}
+							item={dateItem}
+							value={filters[dateItem.key] as string | null}
+							setValue={(value) =>
+								setFilters({
+									...filters,
+									[dateItem.key]: value,
 								} as typeof filters)
 							}
 						/>

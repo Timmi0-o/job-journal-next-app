@@ -1,27 +1,36 @@
-import { IFilterWidgetConfig } from '@/components/widgets/base-filter-widget/types/i-filter-widget-config';
+import { jobVariantsGet } from '@/actions/job-variant/actions'
+import { unitsGet } from '@/actions/unit/actions'
+import { IFilterWidgetConfig } from '@/components/widgets/base-filter-widget/types/i-filter-widget-config'
 
 export const useGetFilterConfig = (): IFilterWidgetConfig => {
 	return {
 		filters: [
 			{
-				type: 'INPUT',
+				type: 'SELECT',
 				key: 'jobVariantId',
-				label: 'ID вида работы',
-				placeholder: 'UUID вида работы',
+				label: 'Вид работы',
+				placeholder: 'Выберите вид работы',
+				mode: 'ASYNC',
+				fetchActions: jobVariantsGet,
+				errorMessage: 'Ошибка загрузки видов работ',
+				selectionMode: 'single',
 			},
 			{
-				type: 'INPUT',
+				type: 'SELECT',
 				key: 'unitId',
-				label: 'ID единицы измерения',
-				placeholder: 'UUID единицы',
+				label: 'Единица измерения',
+				placeholder: 'Выберите единицу',
+				mode: 'ASYNC',
+				fetchActions: unitsGet,
+				errorMessage: 'Ошибка загрузки единиц измерения',
+				selectionMode: 'single',
 			},
 			{
-				type: 'INPUT',
+				type: 'DATE',
 				key: 'endDate',
 				label: 'Дата окончания',
-				placeholder: 'YYYY-MM-DD',
 			},
 		],
 		variant: 'MODAL',
-	};
-};
+	}
+}

@@ -8,6 +8,13 @@ export interface IFormattedRangeField {
 	mode: 'OR';
 }
 
+export interface IFormattedDateRangeFilterField {
+	value: {
+		from?: string;
+		to?: string;
+	};
+}
+
 export interface IFormattedStringField {
 	value: string[];
 	mode: 'OR' | 'AND';
@@ -30,6 +37,7 @@ export type IPresetField = IGetActionPresets | undefined;
 
 export type IQueryField =
 	| IFormattedRangeField
+	| IFormattedDateRangeFilterField
 	| IFormattedStringField
 	| IFormattedBooleanField
 	| IPaginationField

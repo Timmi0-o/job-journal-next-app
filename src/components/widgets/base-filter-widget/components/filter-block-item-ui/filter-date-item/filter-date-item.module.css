@@ -1,0 +1,9 @@
+@reference '@/tailwindcss';
+
+.datePicker {
+	@apply w-full;
+}
+
+.dateFieldGroup {
+	@apply w-full;
+}

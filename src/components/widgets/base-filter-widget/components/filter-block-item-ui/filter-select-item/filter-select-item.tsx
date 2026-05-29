@@ -1,14 +1,14 @@
 import { CloseIcon, Key, Label, ListBox, Select } from '@heroui/react';
 import { closeButtonVariants } from '@heroui/styles';
 import { observer } from 'mobx-react-lite';
-import { IFilterWidgetSelectItem } from '../../../types/i-filter-widget-config';
+import { IFilterWidgetSelectItemDefault } from '../../../types/i-filter-widget-config';
 import { FilterFieldShell } from '../../filter-field-shell/filter-field-shell';
 import styles from './filter-select-item.module.css';
 
 const CLEAR_BUTTON_CLASS_NAME = closeButtonVariants();
 
 interface IFilterSelectItemProps {
-	item: IFilterWidgetSelectItem;
+	item: IFilterWidgetSelectItemDefault;
 	setValue: (value: Key | Key[] | null) => void;
 	value: Key | Key[] | null;
 }

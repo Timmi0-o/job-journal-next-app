@@ -1,15 +1,18 @@
-import { IQueryObject } from '@/types/i-query-object';
-import { createLogger } from '@/utils/logger.util';
-import { IQueryField } from './types/i-query-field';
-import { IRawQueryField } from './types/i-raw-query-field';
-import { formatQueryBooleansFieldInternal } from './utils/format-query-booleans-field';
-import { formatQueryDatesFieldInternal } from './utils/format-query-dates-field';
-import { formatQueryLimitsFieldInternal } from './utils/format-query-limits-field';
-import { formatQueryNumbersFieldInternal } from './utils/format-query-numbers-field';
-import { formatQueryPagesFieldInternal } from './utils/format-query-pages-field';
-import { formatQueryRequiredIdsFieldInternal } from './utils/format-query-required-ids-field';
-import { formatQuerySearchFieldInternal } from './utils/format-query-search-field';
-import { formatQueryStringsFieldInternal } from './utils/format-query-strings-field';
+import { IQueryObject } from '@/types/i-query-object'
+import { createLogger } from '@/utils/logger.util'
+import { IQueryField } from './types/i-query-field'
+import { IRawQueryField } from './types/i-raw-query-field'
+import { formatQueryBooleansFieldInternal } from './utils/format-query-booleans-field'
+import {
+	formatQueryDatesFieldInternal,
+	hasFormattedDateRangeValue,
+} from './utils/format-query-dates-field'
+import { formatQueryLimitsFieldInternal } from './utils/format-query-limits-field'
+import { formatQueryNumbersFieldInternal } from './utils/format-query-numbers-field'
+import { formatQueryPagesFieldInternal } from './utils/format-query-pages-field'
+import { formatQueryRequiredIdsFieldInternal } from './utils/format-query-required-ids-field'
+import { formatQuerySearchFieldInternal } from './utils/format-query-search-field'
+import { formatQueryStringsFieldInternal } from './utils/format-query-strings-field'
 
 /**
  * Преобразует массив queryItems, определяя их fieldType и форматируя значения
@@ -18,88 +21,88 @@ import { formatQueryStringsFieldInternal } from './utils/format-query-strings-fi
 export const formatQueryFields = ({
 	queryItems,
 }: {
-	queryItems: IRawQueryField | IRawQueryField[];
+	queryItems: IRawQueryField | IRawQueryField[]
 }): IQueryObject => {
-	const logger = createLogger('FORMAT QUERY FIELDS');
+	const logger = createLogger('FORMAT QUERY FIELDS')
 
 	const normalizedQueryItems = Array.isArray(queryItems)
 		? queryItems
-		: [queryItems];
+		: [queryItems]
 
-	const resultItems: Record<string, IQueryField> = {};
+	const resultItems: Record<string, IQueryField> = {}
 
 	normalizedQueryItems.forEach((queryItem) => {
-		const { fieldType, key, ...queryItemWithoutFieldType } = queryItem;
+		const { fieldType, key, ...queryItemWithoutFieldType } = queryItem
 
 		switch (fieldType) {
 			case 'DATE': {
 				const datesResult = formatQueryDatesFieldInternal(
-					queryItemWithoutFieldType
-				);
-				if (datesResult.value.length) {
-					resultItems[key] = datesResult;
+					queryItemWithoutFieldType,
+				)
+				if (hasFormattedDateRangeValue(datesResult)) {
+					resultItems[key] = datesResult
 				}
-				break;
+				break
 			}
 			case 'NUMBER': {
 				const numbersResult = formatQueryNumbersFieldInternal(
-					queryItemWithoutFieldType
-				);
+					queryItemWithoutFieldType,
+				)
 				if (numbersResult.value.length) {
-					resultItems[key] = numbersResult;
+					resultItems[key] = numbersResult
 				}
-				break;
+				break
 			}
 			case 'STRING': {
 				const stringsResult = formatQueryStringsFieldInternal(
-					queryItemWithoutFieldType
-				);
+					queryItemWithoutFieldType,
+				)
 				if (stringsResult.value.length) {
-					resultItems[key] = stringsResult;
+					resultItems[key] = stringsResult
 				}
-				break;
+				break
 			}
 			case 'BOOLEAN': {
 				const booleanResult = formatQueryBooleansFieldInternal(
-					queryItemWithoutFieldType
-				);
+					queryItemWithoutFieldType,
+				)
 				if (typeof booleanResult === 'boolean') {
-					resultItems[key] = booleanResult;
+					resultItems[key] = booleanResult
 				}
-				break;
+				break
 			}
 			case 'LIMIT':
 				resultItems[key] = formatQueryLimitsFieldInternal(
-					queryItemWithoutFieldType
-				);
-				break;
+					queryItemWithoutFieldType,
+				)
+				break
 			case 'PAGE':
 				resultItems[key] = formatQueryPagesFieldInternal(
-					queryItemWithoutFieldType
-				);
-				break;
+					queryItemWithoutFieldType,
+				)
+				break
 			case 'SEARCH': {
 				const searchResult = formatQuerySearchFieldInternal(
-					queryItemWithoutFieldType
-				);
+					queryItemWithoutFieldType,
+				)
 				if (searchResult) {
-					resultItems[key] = searchResult;
+					resultItems[key] = searchResult
 				}
-				break;
+				break
 			}
 			case 'REQUIRED_IDS': {
 				const requiredIdsResult = formatQueryRequiredIdsFieldInternal(
-					queryItemWithoutFieldType
-				);
+					queryItemWithoutFieldType,
+				)
 				if (requiredIdsResult?.length) {
-					resultItems[key] = requiredIdsResult;
+					resultItems[key] = requiredIdsResult
 				}
-				break;
+				break
 			}
 			default:
-				logger.warn(`Unknown field type for QUERY ITEM: ${key} - ${fieldType}`);
+				logger.warn(`Unknown field type for QUERY ITEM: ${key} - ${fieldType}`)
 		}
-	});
+	})
 
-	return resultItems;
-};
+	return resultItems
+}

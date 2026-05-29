@@ -14,7 +14,7 @@ export const parseFilterWidgetValueFromSearchParams = (
 		return null;
 	}
 
-	if (filter.type === 'INPUT') {
+	if (filter.type === 'INPUT' || filter.type === 'DATE') {
 		return raw;
 	}
 
@@ -22,7 +22,7 @@ export const parseFilterWidgetValueFromSearchParams = (
 		return raw === 'true';
 	}
 
-	if (filter.selectionMode === 'multiple') {
+	if (filter.type === 'SELECT' && filter.selectionMode === 'multiple') {
 		return raw.split(QUERY_ARRAY_SEPARATOR);
 	}
 
