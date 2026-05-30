@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"dev": "PORT=3166 next dev",
+		"dev": "next dev -p 3166 --webpack",
 		"build": "next build",
 		"start": "PORT=3166 next start",
 		"lint": "eslint"
